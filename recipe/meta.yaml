@@ -29,16 +29,18 @@ build:
 requirements:
   build:
     - toolchain
-    - automake    # [unix]
-    - autoconf    # [unix]
-    - libtool     # [unix]
-    - pkg-config  # [unix]
-    - libsodium   # [unix]
-    - python      # [win]
-    - cmake       # [win]
+    - automake        # [unix]
+    - autoconf        # [unix]
+    - libtool         # [unix]
+    - pkg-config      # [unix]
+    - libsodium       # [unix]
+    - python          # [win]
+    - cmake           # [win]
+    - vs2015_runtime  # [win and py35]
 
   run:
     - libsodium   # [unix]
+    - vs2015_runtime  # [win and py35]
 
 test:
   commands:
