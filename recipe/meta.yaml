@@ -35,6 +35,7 @@ requirements:
     - pkg-config  # [unix]
     - libsodium   # [unix]
     - python      # [win]
+    - cmake       # [win]
 
   run:
     - libsodium   # [unix]
