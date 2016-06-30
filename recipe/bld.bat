@@ -10,12 +10,12 @@ cmake ^
   -D PYTHON_EXECUTABLE="%PYTHON%" ^
   -D PYTHON_INCLUDE_DIR="%PREFIX%/include" ^
   -D ZMQ_BUILD_TESTS="no" ^
-  -G "%CMAKE_GENERATOR%" ^
+  -G "NMake Makefiles" ^
   ..
 if errorlevel 1 exit 1
 
-cmake --build . --config Release
+nmake
 if errorlevel 1 exit 1
 
-cmake --build . --config Release --target install
+nmake install
 if errorlevel 1 exit 1
