@@ -7,8 +7,8 @@ package:
 
 source:
   fn: zeromq-{{ version }}.tar.gz
-  url: https://github.com/zeromq/zeromq{{ ver_maj_min_str }}/releases/download/v{{ version }}/zeromq-{{ version }}.tar.gz
-  sha1: 2b7490b77860be3060b1b1f92cd73184d309ca69
+  url: https://github.com/zeromq/zeromq{{ ver_maj_min_str }}/archive/v{{ version }}.tar.gz
+  sha256: 5a993dcc330e63610fd74a6701b83b020aa5aedf22a98fea01eac93c72ff0b78
   patches:
     # Patch to avoid failing tests on Mac. See issues for details.
     # https://github.com/zeromq/libzmq/issues/1509
@@ -20,25 +20,37 @@ source:
     - Makefile.am.linux.patch  # [linux]
 
 build:
-  skip: true      # [win]
   number: 0
+  features:
+    - vc9   # [win and py27]
+    - vc10  # [win and py34]
+    - vc14  # [win and py35]
 
 requirements:
   build:
-    - automake    # [unix]
-    - autoconf    # [unix]
-    - libtool     # [unix]
-    - pkg-config  # [unix]
-    - libsodium   # [unix]
+    - toolchain
+    - automake        # [unix]
+    - autoconf        # [unix]
+    - libtool         # [unix]
+    - pkg-config      # [unix]
+    - libsodium       # [unix]
+    - python          # [win]
+    - cmake           # [win]
+    - vs2015_runtime  # [win and py35]
 
   run:
     - libsodium   # [unix]
+    - vs2015_runtime  # [win and py35]
 
 test:
   commands:
     - test -f ${PREFIX}/lib/libzmq.a           # [unix]
     - test -f ${PREFIX}/lib/libzmq.dylib       # [osx]
     - test -f ${PREFIX}/lib/libzmq.so          # [linux]
+  requires:
+    - python 2.7.*  # [win and py27]
+    - python 3.4.*  # [win and py34]
+    - python 3.5.*  # [win and py35]
 
 about:
   home: http://zeromq.org
