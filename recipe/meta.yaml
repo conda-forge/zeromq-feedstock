@@ -74,6 +74,7 @@ test:
 about:
   home: http://zeromq.org
   license: LGPL 3
+  license_file: COPYING.LESSER
   summary: A high-performance asynchronous messaging library.
 
 extra:
