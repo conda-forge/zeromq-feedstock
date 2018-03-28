@@ -1,0 +1,24 @@
+From 4aa93e6040820b91921bd55d08f594d5f64aa2e5 Mon Sep 17 00:00:00 2001
+From: Sylvain Corlay <sylvain.corlay@gmail.com>
+Date: Wed, 28 Mar 2018 16:18:52 +0200
+Subject: [PATCH] patch-cmake
+
+---
+ CMakeLists.txt | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index bfee02a..0487c7c 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -1112,7 +1112,6 @@ if (MSVC)
+           EXPORT ${PROJECT_NAME}-targets
+           ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+           LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+-          RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+           PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
+           COMPONENT SDK)
+   if (CMAKE_BUILD_TYPE STREQUAL "Debug")
+-- 
+2.5.3
+
