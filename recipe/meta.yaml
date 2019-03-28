@@ -44,6 +44,8 @@ outputs:
     script: install_zeromq.bat                # [win]
     requirements:
       build:
+        - make                         # [unix]
+        - cmake                        # [win]
         - libtool                      # [unix]
         - pkg-config                   # [unix]
         - {{ compiler('c') }}
