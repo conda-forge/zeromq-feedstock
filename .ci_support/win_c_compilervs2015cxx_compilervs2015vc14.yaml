@@ -9,8 +9,12 @@ cxx_compiler:
 pin_run_as_build:
   vc:
     max_pin: x
+  zeromq:
+    max_pin: x.x
 vc:
 - '14'
+zeromq:
+- 4.2.5
 zip_keys:
 - - vc
   - c_compiler
