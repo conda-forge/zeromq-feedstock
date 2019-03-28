@@ -9,12 +9,12 @@ if errorlevel 1 exit 1
 nmake install
 if errorlevel 1 exit 1
 
-:: Copy of dll and import library on windows (required by pyzmq)
+REM :: Copy of dll and import library on windows (required by pyzmq)
 
-copy /y %LIBRARY_BIN%\libzmq-mt-4*.dll /b %LIBRARY_BIN%\libzmq.dll
-if errorlevel 1 exit 1
-copy /y %LIBRARY_LIB%\libzmq-mt-4*.lib /b %LIBRARY_LIB%\libzmq.lib
-if errorlevel 1 exit 1
+REM copy /y %LIBRARY_BIN%\libzmq-mt-4*.dll /b %LIBRARY_BIN%\libzmq.dll
+REM if errorlevel 1 exit 1
+REM copy /y %LIBRARY_LIB%\libzmq-mt-4*.lib /b %LIBRARY_LIB%\libzmq.lib
+REM if errorlevel 1 exit 1
 
 .\bin\test_ancillaries
 .\bin\test_atomics

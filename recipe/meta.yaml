@@ -3,7 +3,7 @@
 {% set sha256 = "bcbabe1e2c7d0eec4ed612e10b94b112dd5f06fcefa994a0c79a45d835cd21eb" %}
 
 package:
-  name: {{ name|lower }}
+  name: zeromq_meta
   version: {{ version }}
 
 source:
@@ -16,7 +16,7 @@ source:
     - 0005-osx-test.patch  # [osx]
 
 build:
-  number: 1000
+  number: 1001
   run_exports:
     - {{ pin_compatible(name, max_pin='x.x') }}
 
@@ -35,28 +35,85 @@ requirements:
     # need non-empty host to trigger the right cb3 behavior
     - vc  # [win and vc<14]
   run:
-    - libsodium
+    - zeromq
+    - zeromq_perf
 
-test:
-  commands:
-    - test -f ${PREFIX}/lib/libzmq.a         # [unix]
-    - test -f ${PREFIX}/lib/libzmq.so        # [linux]
-    - test -f ${PREFIX}/lib/libzmq.so.5      # [linux]
-    - test -f ${PREFIX}/lib/libzmq.dylib     # [osx]
-    - test -f ${PREFIX}/lib/libzmq.5.dylib   # [osx]
-    # verify libsodium is linked
-    - otool -L ${PREFIX}/lib/libzmq.dylib | grep sodium  # [osx]
-    - ldd ${PREFIX}/lib/libzmq.so | grep sodium  # [linux]
-    - test -f ${PREFIX}/lib/cmake/ZeroMQ/ZeroMQConfig.cmake         # [unix]
-    - test -f ${PREFIX}/lib/cmake/ZeroMQ/ZeroMQConfigVersion.cmake  # [unix]
-    - ${PREFIX}/bin/curve_keygen  # [unix]
-    - if exist %LIBRARY_LIB%\libzmq-mt-s-{{ version | replace('.', '_') }}.lib (exit 0) else (exit 1)  # [win]
-    - if exist %LIBRARY_BIN%\libzmq-mt-{{ version | replace('.', '_') }}.dll (exit 0) else (exit 1)    # [win]
-    - if exist %LIBRARY_LIB%\libzmq-mt-{{ version | replace('.', '_') }}.lib (exit 0) else (exit 1)    # [win]
-    - if exist %LIBRARY_BIN%\libzmq.dll (exit 0) else (exit 1)                                         # [win]
-    - if exist %LIBRARY_LIB%\libzmq.lib (exit 0) else (exit 1)                                         # [win]
-    - if exist %LIBRARY_PREFIX%\cmake\ZeroMQ\ZeroMQConfig.cmake (exit 0) else (exit 1)           # [win]
-    - if exist %LIBRARY_PREFIX%\cmake\ZeroMQ\ZeroMQConfigVersion.cmake (exit 0) else (exit 1)    # [win]
+outputs:
+  - name: zeromq
+    script: install_zeromq.sh                 # [unix]
+    script: install_zeromq.bat                # [win]
+    requirements:
+      build:
+        - libtool                      # [unix]
+        - pkg-config                   # [unix]
+        - {{ compiler('c') }}
+        - {{ compiler('cxx') }}
+      host:
+        - libsodium  # [not (win and vc<14)]
+        - vc  # [win and vc<14]
+      run:
+        - libsodium
+
+    test:
+      commands:
+        - test -f ${PREFIX}/lib/libzmq.a         # [unix]
+        - test -f ${PREFIX}/lib/libzmq.so        # [linux]
+        - test -f ${PREFIX}/lib/libzmq.so.5      # [linux]
+        - test -f ${PREFIX}/lib/libzmq.dylib     # [osx]
+        - test -f ${PREFIX}/lib/libzmq.5.dylib   # [osx]
+        # verify libsodium is linked
+        - otool -L ${PREFIX}/lib/libzmq.dylib | grep sodium  # [osx]
+        - ldd ${PREFIX}/lib/libzmq.so | grep sodium  # [linux]
+        - test -f ${PREFIX}/lib/cmake/ZeroMQ/ZeroMQConfig.cmake         # [unix]
+        - test -f ${PREFIX}/lib/cmake/ZeroMQ/ZeroMQConfigVersion.cmake  # [unix]
+        - ${PREFIX}/bin/curve_keygen  # [unix]
+        - if exist %LIBRARY_LIB%\libzmq-mt-s-{{ version | replace('.', '_') }}.lib (exit 0) else (exit 1)  # [win]
+        - if exist %LIBRARY_BIN%\libzmq-mt-{{ version | replace('.', '_') }}.dll (exit 0) else (exit 1)    # [win]
+        - if exist %LIBRARY_LIB%\libzmq-mt-{{ version | replace('.', '_') }}.lib (exit 0) else (exit 1)    # [win]
+        - if exist %LIBRARY_BIN%\libzmq.dll (exit 0) else (exit 1)                                         # [win]
+        - if exist %LIBRARY_LIB%\libzmq.lib (exit 0) else (exit 1)                                         # [win]
+        - if exist %LIBRARY_PREFIX%\cmake\ZeroMQ\ZeroMQConfig.cmake (exit 0) else (exit 1)           # [win]
+        - if exist %LIBRARY_PREFIX%\cmake\ZeroMQ\ZeroMQConfigVersion.cmake (exit 0) else (exit 1)    # [win]
+
+    about:
+      summary: A high-performance asynchronous messaging library.
+
+  - name: zeromq_perf
+    script: install_perf.sh      # [unix]
+    script: install_perf.bat     # [win]
+    # files:
+    #   - bin/*_lat              # [unix]
+    #   - bin/*_thr              # [unix] 
+    #   - bin/bench*             # [unix]
+    #   - bin\*_lat.exe          # [win]
+    #   - bin\*_thr.exe          # [win] 
+    #   - bin\bench*.exe         # [win]
+
+    requirements:
+      host:
+        - zeromq
+      run:
+        - zeromq
+
+    test:
+      commands:
+        - test -f ${PREFIX}/bin/inproc_lat                                # [unix]
+        - if exist %LIBRARY_BIN%\inproc_lat.exe (exit 0) else (exit 1)    # [win]
+        - test -f ${PREFIX}/bin/inproc_thr                                # [unix]
+        - if exist %LIBRARY_BIN%\inproc_thr.exe (exit 0) else (exit 1)    # [win]
+        - test -f ${PREFIX}/bin/local_lat                                 # [unix]
+        - if exist %LIBRARY_BIN%\local_lat.exe (exit 0) else (exit 1)     # [win]
+        - test -f ${PREFIX}/bin/local_thr                                 # [unix]
+        - if exist %LIBRARY_BIN%\local_thr.exe (exit 0) else (exit 1)     # [win]
+        - test -f ${PREFIX}/bin/remote_lat                                # [unix]
+        - if exist %LIBRARY_BIN%\remote_lat.exe (exit 0) else (exit 1)    # [win]
+        - test -f ${PREFIX}/bin/remote_thr                                # [unix]
+        - if exist %LIBRARY_BIN%\remote_thr.exe (exit 0) else (exit 1)    # [win]
+        - test -f ${PREFIX}/bin/benchmark_radix_tree                      # [unix]
+        - if exist %LIBRARY_BIN%\benchmark_radix_tree.exe (exit 0) else (exit 1)    # [win]
+
+    about:
+      summary: ZeroMQ performance measurement tools.
 
 about:
   home: http://zeromq.org
@@ -69,3 +126,4 @@ extra:
     - minrk
     - SylvainCorlay
     - JohanMabille
+    - egpbos
