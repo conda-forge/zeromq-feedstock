@@ -1,3 +1,4 @@
+dir /s
 cd build
 
 copy /y .\bin\*_lat.exe /b %LIBRARY_BIN%\
