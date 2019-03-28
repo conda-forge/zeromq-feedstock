@@ -4,17 +4,10 @@ cd build
 set "CFLAGS=%CFLAGS% /DUNITY_EXCLUDE_STDINT_H /DUNITY_POINTER_WIDTH=64"
 set "CXXFLAGS=%CXXFLAGS% /DUNITY_EXCLUDE_STDINT_H /DUNITY_POINTER_WIDTH=64"
 
-cmake -G "NMake Makefiles" -D ENABLE_DRAFTS=OFF -D WITH_PERF_TOOL=OFF -D ZMQ_BUILD_TESTS=ON -D ENABLE_CPACK=OFF -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=%LIBRARY_PREFIX% ..
+cmake -G "NMake Makefiles" -D ENABLE_DRAFTS=OFF -D ZMQ_BUILD_TESTS=ON -D ENABLE_CPACK=OFF -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=%LIBRARY_PREFIX% ..
 if errorlevel 1 exit 1
 nmake install
 if errorlevel 1 exit 1
-
-REM :: Copy of dll and import library on windows (required by pyzmq)
-
-REM copy /y %LIBRARY_BIN%\libzmq-mt-4*.dll /b %LIBRARY_BIN%\libzmq.dll
-REM if errorlevel 1 exit 1
-REM copy /y %LIBRARY_LIB%\libzmq-mt-4*.lib /b %LIBRARY_LIB%\libzmq.lib
-REM if errorlevel 1 exit 1
 
 .\bin\test_ancillaries
 .\bin\test_atomics
