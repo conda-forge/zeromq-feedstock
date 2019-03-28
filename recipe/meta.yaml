@@ -17,6 +17,7 @@ source:
 
 build:
   number: 1001
+  skip: True # [not win]
   run_exports:
     - {{ pin_compatible(name, max_pin='x.x') }}
 
