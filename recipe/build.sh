@@ -8,7 +8,7 @@ fi
 autoreconf -vfi
 ./autogen.sh
 
-./configure --prefix="$PREFIX" --with-libsodium
+./configure --prefix="$PREFIX" --disable-Werror --with-libsodium
 make -j${CPU_COUNT}
 
 make check
