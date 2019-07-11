@@ -1,6 +1,6 @@
 {% set name = "zeromq" %}
-{% set version = "4.3.2" %}
-{% set sha256 = "ebd7b5c830d6428956b67a0454a7f8cbed1de74b3b01e5c33c5378e22740f763" %}
+{% set version = "4.3.1" %}
+{% set sha256 = "bcbabe1e2c7d0eec4ed612e10b94b112dd5f06fcefa994a0c79a45d835cd21eb" %}
 
 package:
   name: {{ name|lower }}
@@ -16,7 +16,7 @@ source:
     - 0005-osx-test.patch  # [osx]
 
 build:
-  number: 1
+  number: 1001
   run_exports:
     - {{ pin_compatible(name, max_pin='x.x') }}  # [not win]
     # Windows DLLs have x.y.z in filename
