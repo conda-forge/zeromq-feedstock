@@ -2,7 +2,7 @@ diff --git a/CMakeLists.txt b/CMakeLists.txt
 index 873c6455..5e8dcb43 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-@@ -1393,12 +1393,7 @@ endif()
+@@ -1305,12 +1305,7 @@ endif()
  
  include(CMakePackageConfigHelpers)
  
