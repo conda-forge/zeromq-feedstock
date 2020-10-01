@@ -11,8 +11,8 @@ source:
   url: https://github.com/zeromq/libzmq/releases/download/v{{ version }}/zeromq-{{ version }}.tar.gz
   sha256: {{ sha256 }}
   patches:
-    - 0003-windows-install.patch
-    - 0005-osx-test.patch  # [osx]
+    - 001-windows-install.patch
+    - 002-osx-test.patch  # [osx]
 
 build:
   number: 0
