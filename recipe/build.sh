@@ -8,11 +8,10 @@ fi
 autoreconf -vfi
 ./autogen.sh
 
-./configure --prefix="$PREFIX" --disable-Werror --with-libsodium --disable-static
+./configure --prefix="$PREFIX" --disable-Werror --with-libsodium
 make -j${CPU_COUNT}
 
 make check
-make install
 
 # Generate CMake files, so downstream packages can use `find_package(ZeroMQ)`,
 # which is normally only available when libzmq is itself installed with CMake
@@ -30,7 +29,7 @@ unset(_CONDA_PREFIX)
 
 set(\${PN}_FOUND TRUE)
 
-# add libzmq-4.2.3 cmake targets
+# add libzmq-4.3.3 cmake targets
 
 # only define targets once
 # this file can be loaded multiple times
