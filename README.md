@@ -3,13 +3,11 @@ About zeromq
 
 Home: http://zeromq.org
 
-Package license: LGPL 3
+Package license: LGPL-3.0-or-later
 
-Feedstock license: BSD-3-Clause
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/zeromq-feedstock/blob/master/LICENSE.txt)
 
 Summary: A high-performance asynchronous messaging library.
-
-
 
 Current build status
 ====================
@@ -57,6 +55,13 @@ Current build status
                 </a>
               </td>
             </tr><tr>
+              <td>osx_arm64</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=2248&branchName=master">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/zeromq-feedstock?branchName=master&jobName=osx&configuration=osx_arm64_" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
               <td>win_64</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=2248&branchName=master">
@@ -77,6 +82,7 @@ Current release info
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-zeromq-green.svg)](https://anaconda.org/conda-forge/zeromq) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/zeromq.svg)](https://anaconda.org/conda-forge/zeromq) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/zeromq.svg)](https://anaconda.org/conda-forge/zeromq) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/zeromq.svg)](https://anaconda.org/conda-forge/zeromq) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-zeromq--static-green.svg)](https://anaconda.org/conda-forge/zeromq-static) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/zeromq-static.svg)](https://anaconda.org/conda-forge/zeromq-static) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/zeromq-static.svg)](https://anaconda.org/conda-forge/zeromq-static) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/zeromq-static.svg)](https://anaconda.org/conda-forge/zeromq-static) |
 
 Installing zeromq
 =================
@@ -87,10 +93,10 @@ Installing `zeromq` from the `conda-forge` channel can be achieved by adding `co
 conda config --add channels conda-forge
 ```
 
-Once the `conda-forge` channel has been enabled, `zeromq` can be installed with:
+Once the `conda-forge` channel has been enabled, `zeromq, zeromq-static` can be installed with:
 
 ```
-conda install zeromq
+conda install zeromq zeromq-static
 ```
 
 It is possible to list all of the versions of `zeromq` available on your platform with:
