@@ -1,17 +1,15 @@
 #!/bin/bash
 set -euo pipefail
 
-if [[ `uname` == Darwin ]]; then
-  export LDFLAGS="-Wl,-rpath,$PREFIX/lib $LDFLAGS"
-fi
-
 autoreconf -vfi
 ./autogen.sh
 
 ./configure --prefix="$PREFIX" --disable-Werror --with-libsodium
 make -j${CPU_COUNT}
 
+if [[ "${CONDA_BUILD_CROSS_COMPILATION:-0}" != "1" ]]; then
 make check
+fi
 
 # Generate CMake files, so downstream packages can use `find_package(ZeroMQ)`,
 # which is normally only available when libzmq is itself installed with CMake
