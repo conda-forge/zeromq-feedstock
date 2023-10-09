@@ -1,6 +1,6 @@
 {% set name = "zeromq" %}
-{% set version = "4.3.4" %}
-{% set sha256 = "c593001a89f5a85dd2ddf564805deb860e02471171b3f204944857336295c3e5" %}
+{% set version = "4.3.5" %}
+{% set sha256 = "6653ef5910f17954861fe72332e68b03ca6e4d9c7160eb3a8de5a5a913bfab43" %}
 
 package:
   name: {{ name|lower }}
@@ -18,7 +18,7 @@ source:
     - pr-4242.patch  # https://github.com/zeromq/libzmq/pull/4242
 
 build:
-  number: 1
+  number: 0
   run_exports:
     - {{ pin_subpackage(name, max_pin='x.x') }}  # [not win]
     # Windows DLLs have x.y.z in filename
