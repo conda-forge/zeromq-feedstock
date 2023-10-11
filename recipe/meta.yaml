@@ -86,8 +86,8 @@ outputs:
 
 about:
   home: http://zeromq.org
-  license: LGPL-3.0-or-later
-  license_file: COPYING.LESSER
+  license: MPL-2.0
+  license_file: LICENSE
   summary: A high-performance asynchronous messaging library.
 
 extra:
