@@ -13,9 +13,6 @@ source:
   patches:
     - 001-windows-install.patch
     - 002-osx-test.patch  # [osx]
-    # note: add `./configure --disable-libsodium_randombytes_close` to install.sh
-    # after removing this patch when bumping to 4.3.5
-    - pr-4242.patch  # https://github.com/zeromq/libzmq/pull/4242
 
 build:
   number: 0
