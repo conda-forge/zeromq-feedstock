@@ -1,5 +1,3 @@
-# add this ./configure after 4.3.5
-# ./configure --disable-libsodium_randombytes_close
 make install
 if [[ "$PKG_NAME" == *static ]]
 then
