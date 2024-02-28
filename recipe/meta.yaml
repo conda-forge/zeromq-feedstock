@@ -12,10 +12,11 @@ source:
   sha256: {{ sha256 }}
   patches:
     - 001-windows-install.patch
+    - pr4663.patch
     - 002-osx-test.patch  # [osx]
 
 build:
-  number: 0
+  number: 1
   run_exports:
     - {{ pin_subpackage(name, max_pin='x.x') }}  # [not win]
     # Windows DLLs have x.y.z in filename
