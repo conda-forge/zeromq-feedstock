@@ -16,7 +16,7 @@ source:
     - 002-osx-test.patch  # [osx]
 
 build:
-  number: 2
+  number: 3
   run_exports:
     - {{ pin_subpackage(name, max_pin='x.x') }}  # [not win]
     # Windows DLLs have x.y.z in filename
@@ -31,6 +31,7 @@ requirements:
     - libtool                      # [unix]
     - pkg-config                   # [unix]
     - {{ compiler('c') }}
+    - {{ stdlib("c") }}
     - {{ compiler('cxx') }}
   host:
     - libsodium
@@ -70,6 +71,7 @@ outputs:
         - libtool                      # [unix]
         - pkg-config                   # [unix]
         - {{ compiler('c') }}
+        - {{ stdlib("c") }}
         - {{ compiler('cxx') }}
       host:
         - libsodium
