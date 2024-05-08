@@ -4,34 +4,14 @@ Date: Tue, 7 May 2024 15:59:09 -0500
 Subject: [PATCH] Add gssapi support to cmake
 
 ---
- .github/workflows/CI.yaml                  |  7 ++++
  CMakeLists.txt                             | 26 +++++++++++++
  builds/cmake/Modules/Findgssapi_krb5.cmake | 45 ++++++++++++++++++++++
- builds/cmake/ci_build.sh                   |  4 ++
  builds/cmake/platform.hpp.in               |  1 +
  tests/CMakeLists.txt                       |  4 ++
  unittests/CMakeLists.txt                   |  4 ++
  7 files changed, 91 insertions(+)
  create mode 100644 builds/cmake/Modules/Findgssapi_krb5.cmake
 
-diff --git a/.github/workflows/CI.yaml b/.github/workflows/CI.yaml
-index dd6af6666f..e4ffffb2ce 100644
---- a/.github/workflows/CI.yaml
-+++ b/.github/workflows/CI.yaml
-@@ -55,6 +55,13 @@ jobs:
-             DRAFT: enabled
-             PACKAGES: cmake libsodium-dev
-             TLS: enabled
-+          - os: ubuntu-latest
-+            BUILD_TYPE: cmake
-+            CURVE: libsodium
-+            DRAFT: enabled
-+            GSSAPI: enabled
-+            PACKAGES: cmake libsodium-dev libkrb5-dev
-+            TLS: enabled
-           - os: ubuntu-latest
-             BUILD_TYPE: cmake
-             DRAFT: enabled
 diff --git a/CMakeLists.txt b/CMakeLists.txt
 index 6b62cc1ec3..1859493835 100644
 --- a/CMakeLists.txt
@@ -148,21 +128,6 @@ index 0000000000..f4416c6acc
 +include(FindPackageHandleStandardArgs)
 +find_package_handle_standard_args(gssapi_krb5 DEFAULT_MSG GSSAPI_KRB5_LIBRARIES GSSAPI_KRB5_INCLUDE_DIRS)
 +mark_as_advanced(GSSAPI_KRB5_FOUND GSSAPI_KRB5_LIBRARIES GSSAPI_KRB5_INCLUDE_DIRS)
-diff --git a/builds/cmake/ci_build.sh b/builds/cmake/ci_build.sh
-index 9a0ceb603c..01caa677c2 100755
---- a/builds/cmake/ci_build.sh
-+++ b/builds/cmake/ci_build.sh
-@@ -49,6 +49,10 @@ elif [ $CURVE == "libsodium" ]; then
-     fi
- fi
- 
-+if [ "$GSSAPI" == "enabled" ]; then
-+    CMAKE_OPTS+=("-DWITH_GSSAPI_KRB5=ON")
-+fi
-+
- CMAKE_PREFIXES=()
- MAKE_PREFIXES=()
- PARALLEL_MAKE_OPT="-j5"
 diff --git a/builds/cmake/platform.hpp.in b/builds/cmake/platform.hpp.in
 index a06390a0d6..e3b7ab8b95 100644
 --- a/builds/cmake/platform.hpp.in
