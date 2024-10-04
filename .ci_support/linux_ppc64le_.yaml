@@ -22,6 +22,8 @@ krb5:
 - '1.21'
 target_platform:
 - linux-ppc64le
+zeromq:
+- 4.3.5
 zip_keys:
 - - c_compiler_version
   - cxx_compiler_version
