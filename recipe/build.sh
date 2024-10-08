@@ -7,6 +7,7 @@ autoreconf -vfi
 ./configure \
   --prefix="$PREFIX" \
   --disable-Werror \
+  --disable-drafts \
   --with-libsodium \
   --disable-libsodium_randombytes_close \
   --with-libgssapi_krb5
