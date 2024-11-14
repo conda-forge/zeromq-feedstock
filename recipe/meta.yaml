@@ -15,9 +15,10 @@ source:
     - pr4663.patch
     - 002-osx-test.patch  # [osx]
     - pr4684.patch
+    - 003-no-stdc++-on-win.patch  # [win]
 
 build:
-  number: 6
+  number: 7
   run_exports:
     - {{ pin_subpackage(name, max_pin='x.x') }}  # [not win]
     # Windows DLLs have x.y.z in filename
