@@ -3,7 +3,7 @@ About zeromq-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/zeromq-feedstock/blob/main/LICENSE.txt)
 
-Home: http://zeromq.org
+Home: http://zeromq.org/
 
 Package license: MPL-2.0
 
@@ -82,7 +82,6 @@ Current release info
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-zeromq-green.svg)](https://anaconda.org/conda-forge/zeromq) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/zeromq.svg)](https://anaconda.org/conda-forge/zeromq) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/zeromq.svg)](https://anaconda.org/conda-forge/zeromq) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/zeromq.svg)](https://anaconda.org/conda-forge/zeromq) |
-| [![Conda Recipe](https://img.shields.io/badge/recipe-zeromq--static-green.svg)](https://anaconda.org/conda-forge/zeromq-static) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/zeromq-static.svg)](https://anaconda.org/conda-forge/zeromq-static) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/zeromq-static.svg)](https://anaconda.org/conda-forge/zeromq-static) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/zeromq-static.svg)](https://anaconda.org/conda-forge/zeromq-static) |
 
 Installing zeromq
 =================
@@ -94,16 +93,16 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `zeromq, zeromq-static` can be installed with `conda`:
+Once the `conda-forge` channel has been enabled, `zeromq` can be installed with `conda`:
 
 ```
-conda install zeromq zeromq-static
+conda install zeromq
 ```
 
 or with `mamba`:
 
 ```
-mamba install zeromq zeromq-static
+mamba install zeromq
 ```
 
 It is possible to list all of the versions of `zeromq` available on your platform with `conda`:
