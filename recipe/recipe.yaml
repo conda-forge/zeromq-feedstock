@@ -27,6 +27,9 @@ build:
   files:
     exclude:
       - share/man/
+  dynamic_linking:
+    overdepending_behavior: error
+    overlinking_behavior: error
 
 requirements:
   build:
@@ -53,6 +56,8 @@ requirements:
 
 tests:
   - package_contents:
+      bin:
+        - curve_keygen
       lib:
         - if: unix
           then:
@@ -77,15 +82,7 @@ tests:
               - lib/libzmq.a
 
   - script:
-      - if: osx
-        then:
-          - otool -L ${PREFIX}/lib/libzmq.dylib | grep sodium
-      - if: linux
-        then:
-          - ldd ${PREFIX}/lib/libzmq.so | grep sodium
-      - if: unix
-        then:
-          - ${PREFIX}/bin/curve_keygen
+      - curve_keygen
 
 about:
   license: MPL-2.0
