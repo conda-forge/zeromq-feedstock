@@ -32,6 +32,7 @@ if errorlevel 1 exit 1
 copy /y %LIBRARY_LIB%\libzmq-mt-4*.lib /b %LIBRARY_LIB%\libzmq.lib
 if errorlevel 1 exit 1
 
+:: Run tests
 .\bin\test_ancillaries
 .\bin\test_atomics
 .\bin\test_base85

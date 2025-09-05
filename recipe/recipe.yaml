@@ -15,6 +15,7 @@ source:
     - 001-windows-install.patch
     - pr4663.patch
     - pr4684.patch
+    - pr4799.patch
     - if: osx
       then:
         - 002-osx-test.patch
@@ -66,9 +67,11 @@ tests:
           then:
             - libzmq-mt-${{ version | replace('.', '_') }}
       files:
-        exists: 
-          - lib/cmake/ZeroMQ/ZeroMQConfig.cmake
-          - lib/cmake/ZeroMQ/ZeroMQConfigVersion.cmake
+        exists:
+          - if: unix
+            then:
+              - lib/cmake/ZeroMQ/ZeroMQConfig.cmake
+              - lib/cmake/ZeroMQ/ZeroMQConfigVersion.cmake
           - if: linux
             then:
               - lib/libzmq.so.5
