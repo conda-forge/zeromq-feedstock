@@ -28,8 +28,8 @@ build:
     exclude:
       - share/man/
   dynamic_linking:
+    # this checks for libsodium, krb
     overdepending_behavior: error
-    overlinking_behavior: error
 
 requirements:
   build:
