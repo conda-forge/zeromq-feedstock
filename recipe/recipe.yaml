@@ -65,7 +65,6 @@ tests:
         - if: win
           then:
             - libzmq-mt-${{ version | replace('.', '_') }}
-            - libzmq-mt-s-${{ version | replace('.', '_') }}
       files:
         exists: 
           - lib/cmake/ZeroMQ/ZeroMQConfig.cmake
@@ -80,6 +79,10 @@ tests:
           - if: unix
             then:
               - lib/libzmq.a
+          - if: win
+            then:
+              - Library/lib/libzmq-mt-s*
+
 
   - script:
       - curve_keygen
