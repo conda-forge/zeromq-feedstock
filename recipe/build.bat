@@ -6,7 +6,9 @@ set "CXXFLAGS=%CXXFLAGS% /DUNITY_EXCLUDE_STDINT_H /DUNITY_POINTER_WIDTH=64"
 
 cmake ^
   -G "NMake Makefiles" ^
+  -D CMAKE_POLICY_VERSION_MINIMUM=3.31 ^
   %CMAKE_ARGS% ^
+  -D BUILD_STATIC=OFF ^
   -D ENABLE_DRAFTS=OFF ^
   -D WITH_PERF_TOOL=OFF ^
   -D ZMQ_BUILD_TESTS=ON ^
@@ -30,6 +32,7 @@ if errorlevel 1 exit 1
 copy /y %LIBRARY_LIB%\libzmq-mt-4*.lib /b %LIBRARY_LIB%\libzmq.lib
 if errorlevel 1 exit 1
 
+:: Run tests
 .\bin\test_ancillaries
 .\bin\test_atomics
 .\bin\test_base85
