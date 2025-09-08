@@ -1,13 +1,19 @@
 #!/bin/bash
 set -euo pipefail
 
+if [[ "${drafts}" == "ON" ]]; then
+  enable_drafts="--enable-drafts"
+else
+  enable_drafts="--disable-drafts"
+fi
+
 autoreconf -vfi
 ./autogen.sh
 
 ./configure \
   --prefix="$PREFIX" \
   --disable-Werror \
-  --disable-drafts \
+  "${enable_drafts}" \
   --disable-static \
   --with-libsodium \
   --disable-libsodium_randombytes_close \

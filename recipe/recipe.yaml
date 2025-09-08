@@ -3,6 +3,9 @@ schema_version: 1
 context:
   name: zeromq
   version: 4.3.5
+  build: 9
+  build_drafts: ${{ drafts == "ON" }}
+  build_prefix: "${{ 'drafts_' if build_drafts else '' }}"
 
 package:
   name: ${{ name|lower }}
@@ -24,13 +27,20 @@ source:
         - 003-no-stdc++-on-win.patch
 
 build:
-  number: 8
+  number: ${{ build }}
+  string: ${{ build_prefix }}h${{ hash }}_${{ build }}
   files:
     exclude:
       - share/man/
   dynamic_linking:
     # this checks for libsodium, krb
     overdepending_behavior: error
+  script:
+    file: build
+    env:
+      drafts: ${{ drafts }}
+  variant:
+    down_prioritize_variant: ${{ 1 if build_drafts else 0 }}
 
 requirements:
   build:
@@ -51,9 +61,11 @@ requirements:
     - libsodium
     - krb5
   run_exports:
-    - if: win
+    - if: win or build_drafts
       then: ${{ pin_subpackage(name, upper_bound='x.x.x') }}
       else: ${{ pin_subpackage(name, upper_bound='x.x') }}
+    - if: build_drafts
+      then: ${{ name }} * ${{ build_prefix }}*
 
 tests:
   - package_contents:
@@ -88,7 +100,22 @@ tests:
 
 
   - script:
-      - curve_keygen
+      content:
+        - curve_keygen
+        - cmake -G Ninja -B _build tests
+        - cmake --build _build  -v
+        - ctest --test-dir _build
+      env:
+        drafts: ${{ drafts }}
+
+    files:
+      recipe:
+        - tests/
+    requirements:
+      run:
+        - ${{ compiler("c") }}
+        - cmake
+        - ninja
 
 about:
   license: MPL-2.0
