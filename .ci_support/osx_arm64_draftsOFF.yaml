@@ -21,7 +21,7 @@ cxx_compiler_version:
 drafts:
 - 'OFF'
 krb5:
-- '1.21'
+- '1.22'
 macos_machine:
 - arm64-apple-darwin20.0.0
 target_platform:

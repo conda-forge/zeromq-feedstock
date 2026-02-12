@@ -11,6 +11,6 @@ cxx_compiler:
 drafts:
 - 'OFF'
 krb5:
-- '1.21'
+- '1.22'
 target_platform:
 - win-64
