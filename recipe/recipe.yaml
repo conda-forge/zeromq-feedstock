@@ -104,7 +104,7 @@ tests:
         - curve_keygen
         - cmake -G Ninja -B _build tests
         - cmake --build _build  -v
-        - ctest --test-dir _build
+        - ctest --test-dir _build --output-on-failure
       env:
         drafts: ${{ drafts }}
 
