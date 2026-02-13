@@ -114,7 +114,7 @@ tests:
     requirements:
       run:
         - ${{ compiler("c") }}
-        - cmake
+        - cmake >=3.31
         - ninja
 
 about:
