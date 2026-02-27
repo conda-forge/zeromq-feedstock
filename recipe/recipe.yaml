@@ -3,7 +3,7 @@ schema_version: 1
 context:
   name: zeromq
   version: 4.3.5
-  build: 9
+  build: 10
   build_drafts: ${{ drafts == "ON" }}
   build_prefix: "${{ 'drafts_' if build_drafts else '' }}"
 
