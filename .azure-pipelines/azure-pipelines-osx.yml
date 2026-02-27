@@ -5,25 +5,29 @@
 jobs:
 - job: osx
   pool:
-    vmImage: macOS-15
+    vmImage: $(VMIMAGE)
   strategy:
     matrix:
       osx_64_draftsOFF:
         CONFIG: osx_64_draftsOFF
         UPLOAD_PACKAGES: 'True'
         SHORT_CONFIG: osx_64_draftsOFF
+        VMIMAGE: macOS-15
       osx_64_draftsON:
         CONFIG: osx_64_draftsON
         UPLOAD_PACKAGES: 'True'
         SHORT_CONFIG: osx_64_draftsON
+        VMIMAGE: macOS-15
       osx_arm64_draftsOFF:
         CONFIG: osx_arm64_draftsOFF
         UPLOAD_PACKAGES: 'True'
         SHORT_CONFIG: osx_arm64_draftsOFF
+        VMIMAGE: macOS-15
       osx_arm64_draftsON:
         CONFIG: osx_arm64_draftsON
         UPLOAD_PACKAGES: 'True'
         SHORT_CONFIG: osx_arm64_draftsON
+        VMIMAGE: macOS-15
   timeoutInMinutes: 360
   variables: {}
 
