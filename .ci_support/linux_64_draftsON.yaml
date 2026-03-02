@@ -19,7 +19,7 @@ docker_image:
 drafts:
 - 'ON'
 krb5:
-- '1.22'
+- '1.21'
 libsodium:
 - 1.0.21
 target_platform:

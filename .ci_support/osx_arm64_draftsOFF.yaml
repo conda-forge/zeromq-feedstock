@@ -21,7 +21,7 @@ cxx_compiler_version:
 drafts:
 - 'OFF'
 krb5:
-- '1.22'
+- '1.21'
 libsodium:
 - 1.0.21
 macos_machine:
