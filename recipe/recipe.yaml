@@ -22,6 +22,7 @@ source:
     - if: osx
       then:
         - 002-osx-test.patch
+        - 004-mac-gh4845.patch
     - if: win
       then:
         - 003-no-stdc++-on-win.patch
