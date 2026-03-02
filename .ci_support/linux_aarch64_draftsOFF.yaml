@@ -20,6 +20,8 @@ drafts:
 - 'OFF'
 krb5:
 - '1.22'
+libsodium:
+- 1.0.21
 target_platform:
 - linux-aarch64
 zip_keys:

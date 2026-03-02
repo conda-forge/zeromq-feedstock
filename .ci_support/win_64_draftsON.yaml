@@ -12,5 +12,7 @@ drafts:
 - 'ON'
 krb5:
 - '1.22'
+libsodium:
+- 1.0.21
 target_platform:
 - win-64
