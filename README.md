@@ -110,6 +110,20 @@ Current build status
                   <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/zeromq-feedstock?branchName=main&jobName=win&configuration=win%20win_64_draftsON" alt="variant">
                 </a>
               </td>
+            </tr><tr>
+              <td>win_arm64_draftsOFF</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=2248&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/zeromq-feedstock?branchName=main&jobName=win&configuration=win%20win_arm64_draftsOFF" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>win_arm64_draftsON</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=2248&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/zeromq-feedstock?branchName=main&jobName=win&configuration=win%20win_arm64_draftsON" alt="variant">
+                </a>
+              </td>
             </tr>
           </tbody>
         </table>
