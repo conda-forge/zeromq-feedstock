@@ -60,7 +60,10 @@ requirements:
     - ${{ stdlib("c") }}
   host:
     - libsodium
-    - krb5
+    - if: target_platform != "win-arm64"
+      # not yet available: https://github.com/conda-forge/krb5-feedstock/pull/51
+      then:
+        - krb5
   run_exports:
     - if: win or build_drafts
       then: ${{ pin_subpackage(name, upper_bound='x.x.x') }}
